@@ -22,8 +22,8 @@
 - 3 diagrams (architecture, database ownership, order flow).
 
 ## Issues faced and solutions identified
-- Issue: (write your own here, for example: not sure how the Order Service handles a payment failure.)
-- Solution: (write how you solved it, for example: the Order Service restores the stock and marks the order FAILED.)
+- Issue: I was not sure why the Order Service should call the Product Service API instead of reading product_db directly to check stock.
+- Solution: I learned that direct database access creates tight coupling, because if the Product team changes a table, the Order Service breaks. It also skips the Product Service's business rules. So the Order Service calls GET /products/{id} and the Product Service returns the data.
 
 ## Pending work
 - Review all documents once more and practise explaining them.
